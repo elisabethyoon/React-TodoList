@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.wrapper {
+  width: 600px;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.list-item.active .text {
+  opacity: 0.2;
+}
+.list-item .text {
+  width: 200px;
+}
+.button {
+  margin-left: 10px;
+}
+.btn {
+  cursor: pointer;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+}
+.btn.btn-ok {
+  background-color: #1462ff;
+}
+.btn.btn-cancel {
+  background-color: #aaa;
+}
+.btn.btn-modify {
+  background-color: #feb014;
+}
+.btn.btn-delete {
+  background-color: #ff1462;
+}
+.btn.btn-add {
+  background-color: #3a7bff;
+}
+.insert input {
+  width: 300px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
