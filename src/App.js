@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InsertForm from "./components/InsertForm";
 import TodoList from "./components/TodoList";
+import { tsObjectKeyword } from "@babel/types";
 
 
 class App extends Component {
@@ -12,19 +13,23 @@ class App extends Component {
 				{
 					id: 1,
 					text: '할일1',
-					isComplete: false
+					isComplete: false,
+					isUpdate: false,
 				},
 				{
 					id: 2,
 					text: '할일2',
-					isComplete: false
+					isComplete: false,
+					isUpdate: false,
 				},
 				{
 					id: 3,
 					text: '할일3',
-					isComplete: false
+					isComplete: false,
+					isUpdate: false,
 				},
 			],
+			nexdId: 4,
 		};
 	}
 	onChangeValue = (e) => {
@@ -38,16 +43,59 @@ class App extends Component {
 		// 등록 or 추가 concat함수
 		// 삭제 filter함수
 		const newItems = this.state.todoLists.map((item) => {
-			if (item.id === id) {
-				return { ...item, isComplete: !item.isComplete }
-			} else {
-				return item;
-			}
+			return id === item.id ? { ...item, isComplete: !item.isComplete } : item
+
 		})
 		console.log(newItems);
 
 		this.setState({
 			todoLists: newItems
+		})
+	}
+
+	deleteItem = (selectedId) => {
+		const newDeleteItem = this.state.todoLists.filter((list) => {
+			return list.id !== selectedId ? list : null
+			// if (list.id !== selectedId) {
+			// 	return list
+			// }
+		});
+		this.setState({
+			todoLists: newDeleteItem
+		})
+	}
+
+	onSubmitItem = () => {
+		console.log('등록');
+		console.log(this.state.inputValue);
+		const newItem = {
+			id: this.state.nexdId,
+			text: this.state.inputValue,
+			isComplete: false,
+			isUpdate: false,
+		}
+		const newLists = [
+			...this.state.todoLists, newItem
+		];
+
+		this.setState({
+			todoLists: newLists,
+			nexdId: this.state.nexdId + 1,
+			inputValue: '',
+		})
+	}
+
+	itemUpdate = (selectedId) => {
+		console.log(selectedId);
+		const newTodoLists = this.state.todoLists.map((list) => {
+			if (list.id === selectedId) {
+				return { ...list, isUpdate: !list.isUpdate }
+			} else {
+				return list
+			}
+		})
+		this.setState({
+			todoLists: newTodoLists
 		})
 	}
 	render() {
@@ -56,10 +104,16 @@ class App extends Component {
 				<div className="wrapper">
 					<header>TodoList</header>
 					<div className="content">
-						<InsertForm inputValue={this.state.inputValue} onChangeValue={this.onChangeValue} />
+						<InsertForm
+							inputValue={this.state.inputValue}
+							onChangeValue={this.onChangeValue}
+							onSubmitItem={this.onSubmitItem}
+						/>
 						<TodoList
 							todoLists={this.state.todoLists}
 							onChangeComplete={this.onChangeComplete}
+							deleteItem={this.deleteItem}
+							itemUpdate={this.itemUpdate}
 						></TodoList>
 					</div>
 				</div>

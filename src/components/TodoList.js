@@ -3,12 +3,17 @@ import TodoItem from './TodoItem'
 
 class TodoList extends Component {
 	render() {
-		console.log(this.props)
+		const { todoLists, onChangeComplete, deleteItem, itemUpdate } = this.props;
 		return (
 			<ul className="todo-list">
-				{this.props.todoLists.map((list) => (
-					<TodoItem key={list.id} list={list}
-						onChangeComplete={this.props.onChangeComplete} />
+				{todoLists.map((list) => (
+					<TodoItem
+						key={list.id}
+						list={list}
+						onChangeComplete={onChangeComplete}
+						deleteItem={deleteItem}
+						itemUpdate={itemUpdate}
+					/>
 				))}
 
 			</ul>

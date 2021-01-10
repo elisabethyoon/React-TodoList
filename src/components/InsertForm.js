@@ -9,10 +9,16 @@ class InsertForm extends Component {
 	render() {
 		return (
 			<div className="insert">
-				<form>
-					<input type="text" placeholder="Todo를 입력해주세요" value={this.props.inputValue} onChange={this.props.onChangeValue} />
-					<button className="btn btn-add">등록</button>
-				</form>
+				<input
+					type="text"
+					placeholder="Todo를 입력해주세요"
+					value={this.props.inputValue}
+					onChange={this.props.onChangeValue}
+				/>
+				<button
+					className="btn btn-add"
+					onClick={this.props.onSubmitItem}
+				>등록</button>
 			</div>
 		)
 	}
