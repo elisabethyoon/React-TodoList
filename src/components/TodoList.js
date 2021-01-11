@@ -3,7 +3,7 @@ import TodoItem from './TodoItem'
 
 class TodoList extends Component {
 	render() {
-		const { todoLists, onChangeComplete, deleteItem, itemUpdate } = this.props;
+		const { todoLists, onChangeComplete, deleteItem, itemUpdate, updateSubmitForm } = this.props;
 		return (
 			<ul className="todo-list">
 				{todoLists.map((list) => (
@@ -13,6 +13,7 @@ class TodoList extends Component {
 						onChangeComplete={onChangeComplete}
 						deleteItem={deleteItem}
 						itemUpdate={itemUpdate}
+						updateSubmitForm={updateSubmitForm}
 					/>
 				))}
 

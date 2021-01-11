@@ -21,7 +21,8 @@ class TodoItem extends Component {
 		})
 	}
 	render() {
-		const { list, onChangeComplete, deleteItem, itemUpdate } = this.props;
+		const { list, onChangeComplete, deleteItem, itemUpdate, updateSubmitForm } = this.props;
+		const { updateValue } = this.state;
 		const { id, text, isComplete, isUpdate } = list;
 		return (
 			<li className={isComplete ? 'list-item active' : 'list-item'}>
@@ -30,7 +31,7 @@ class TodoItem extends Component {
 						<input
 							type="text"
 							placeholder="todo를 적어주세요"
-							value={this.state.updateValue}
+							value={updateValue}
 							onChange={this.onChangeUpdateValue}
 						/>
 					</div>
@@ -42,7 +43,7 @@ class TodoItem extends Component {
 				</div>
 				{isUpdate ? (
 					<div className="button">
-						<button type="button" className="btn btn-ok">확인</button>
+						<button type="button" className="btn btn-ok" onClick={() => updateSubmitForm(id, updateValue)}>수정완료</button>
 						<button type="button" className="btn btn-cancel" onClick={() => itemUpdate(id)}>취소</button>
 					</div>
 				) : (

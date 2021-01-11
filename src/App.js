@@ -65,6 +65,7 @@ class App extends Component {
 		})
 	}
 
+	// 등록하기
 	onSubmitItem = () => {
 		console.log('등록');
 		console.log(this.state.inputValue);
@@ -85,6 +86,7 @@ class App extends Component {
 		})
 	}
 
+	// 수정폼 변경
 	itemUpdate = (selectedId) => {
 		console.log(selectedId);
 		const newTodoLists = this.state.todoLists.map((list) => {
@@ -96,6 +98,20 @@ class App extends Component {
 		})
 		this.setState({
 			todoLists: newTodoLists
+		})
+	}
+
+	// 업데이트 수정완료 버튼
+	updateSubmitForm = (id, updateValue) => {
+		const newlists = this.state.todoLists.map((list) => {
+			if (list.id === id) {
+				return { ...list, text: updateValue, isUpdate: false }
+			} else {
+				return list
+			}
+		})
+		this.setState({
+			todoLists: newlists,
 		})
 	}
 	render() {
@@ -114,6 +130,7 @@ class App extends Component {
 							onChangeComplete={this.onChangeComplete}
 							deleteItem={this.deleteItem}
 							itemUpdate={this.itemUpdate}
+							updateSubmitForm={this.updateSubmitForm}
 						></TodoList>
 					</div>
 				</div>
