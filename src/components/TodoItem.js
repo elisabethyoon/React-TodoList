@@ -1,61 +1,55 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class TodoItem extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			updateValue: ''
-		}
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
 
-	}
-	updateToggle = (id, text) => {
-		this.props.itemUpdate(id);
-		console.log(text);
-		this.setState({
-			updateValue: text
-		})
-	}
-	onChangeUpdateValue = (e) => {
-		this.setState({
-			updateValue: e.target.value
-		})
-	}
-	render() {
-		const { list, onChangeComplete, deleteItem, itemUpdate, updateSubmitForm } = this.props;
-		const { updateValue } = this.state;
-		const { id, text, isComplete, isUpdate } = list;
-		return (
-			<li className={isComplete ? 'list-item active' : 'list-item'}>
-				{isUpdate ? (
-					<div>
-						<input
-							type="text"
-							placeholder="todo를 적어주세요"
-							value={updateValue}
-							onChange={this.onChangeUpdateValue}
-						/>
-					</div>
-				) : (
-						<div className="text">{text}</div>
-					)}
-				<div className="checked">
-					<input type="checkbox" id="chk1" value={isComplete} onChange={() => onChangeComplete(id)} />
-				</div>
-				{isUpdate ? (
-					<div className="button">
-						<button type="button" className="btn btn-ok" onClick={() => updateSubmitForm(id, updateValue)}>수정완료</button>
-						<button type="button" className="btn btn-cancel" onClick={() => itemUpdate(id)}>취소</button>
-					</div>
-				) : (
-						<div className="button">
-							<button type="button" className="btn btn-modify" onClick={() => this.updateToggle(id, text)}>수정</button>
-							{isComplete ? <button type="button" className="btn btn-delete" onClick={() => deleteItem(id)} >삭제</button> : null}
-						</div>
-					)}
-			</li>
+  //   }
+  // }
+  onChangeValue = () => {
+    console.log("check");
+  };
+  render() {
+    console.log(this.props, "item");
+    return (
+      <li className="list-item">
+        {/* 수정 input폼  <div>
+          <input type="text" placeholder="todo를 적어주세요" />
+        </div> */}
 
-		)
-	}
+        <div className="text">{this.props.title}</div>
+        <div className="checked">
+          <input type="checkbox" id="chk1" onClick={this.onChangeValue} />
+        </div>
+
+        <div className="button">
+          <button type="button" className="btn btn-modify">
+            수정
+          </button>
+          <button type="button" className="btn btn-delete">
+            삭제
+          </button>
+        </div>
+        {/* 수정눌렀을경우 */}
+        {/* <div className="button">
+                  <button
+                    type="button"
+                    className="btn btn-ok"
+                  >
+                    확인
+                    </button>
+                  <button
+                    type="button"
+                    className="btn btn-cancel"
+                  >
+                    취소
+                    </button>
+                </div> */}
+        {/* 수정눌렀을경우 */}
+      </li>
+    );
+  }
 }
 
-export default TodoItem
+export default TodoItem;
