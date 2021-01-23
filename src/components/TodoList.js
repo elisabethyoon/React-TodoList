@@ -1,15 +1,31 @@
 import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
 import TodoItem from "./TodoItem";
+import { toJS } from "mobx";
 
+@inject("todoStore")
+@observer
 class TodoList extends Component {
+  // input check
+  onChangeComplete = (id) => {
+    const { todoStore } = this.props;
+    todoStore.onChangeComplete(id);
+  };
   render() {
-    console.log(this.props, "list");
-    const { lists } = this.props;
+    const { todoStore } = this.props;
+    const { todoList } = todoStore;
+
     return (
       <ul className="todo-list">
-        {lists.map((list) => {
-          const { id, title, isComplete } = list;
-          return <TodoItem key={id} title={title} isComplete={isComplete} />;
+        {todoList.map((list) => {
+          console.log(list);
+          return (
+            <TodoItem
+              key={list.id}
+              list={list}
+              onChangeComplete={this.onChangeComplete}
+            />
+          );
         })}
       </ul>
     );

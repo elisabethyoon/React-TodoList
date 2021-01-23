@@ -1,26 +1,21 @@
 import React, { Component } from "react";
 
 class TodoItem extends Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-
-  //   }
-  // }
-  onChangeValue = () => {
-    console.log("check");
-  };
   render() {
-    console.log(this.props, "item");
+    const { list, onChangeComplete } = this.props;
     return (
       <li className="list-item">
         {/* 수정 input폼  <div>
           <input type="text" placeholder="todo를 적어주세요" />
         </div> */}
 
-        <div className="text">{this.props.title}</div>
+        <div className="text">{list.title}</div>
         <div className="checked">
-          <input type="checkbox" id="chk1" onClick={this.onChangeValue} />
+          <input
+            type="checkbox"
+            id="chk1"
+            onChange={() => onChangeComplete(list.id)}
+          />
         </div>
 
         <div className="button">
