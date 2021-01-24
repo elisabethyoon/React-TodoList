@@ -4,15 +4,16 @@ import { observer, inject } from "mobx-react";
 @inject("todoStore")
 @observer
 class InsertForm extends Component {
+  addItem = () => {
+    const { todoStore } = this.props;
+    todoStore.addItem();
+  };
+
   onChangeValue = (e) => {
     const value = e.target.value;
-    this.props.todoStore.onChangeValue(value);
+    const { todoStore } = this.props;
+    todoStore.onChangeValue(value);
   };
-
-  addItem = () => {
-    this.props.todoStore.addItem();
-  };
-
   render() {
     const { todoStore } = this.props;
     const { inputValue } = todoStore;

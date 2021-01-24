@@ -1,21 +1,28 @@
 import { makeAutoObservable, observable, action } from "mobx";
+import { toJS } from "mobx";
 
 class TodoStore {
   constructor() {
     makeAutoObservable(this);
   }
 
-  @observable // state와 같은 역할
+  @observable
   todoList = [
     {
       id: 1,
-      title: "할일1",
+      title: "todo1",
       isComplete: false,
       isUpdate: false
     },
     {
       id: 2,
-      title: "할일2",
+      title: "todo2",
+      isComplete: false,
+      isUpdate: false
+    },
+    {
+      id: 3,
+      title: "todo3",
       isComplete: false,
       isUpdate: false
     }
@@ -24,34 +31,62 @@ class TodoStore {
   @observable
   inputValue = "";
 
-  @action
-  onChangeValue(value) {
-    this.inputValue = value;
-  }
+  nextId = 4;
 
-  nextId = 3;
-
+  // todolist등록
   @action
   addItem() {
-    const item = {
+    const newItem = {
       id: this.nextId++,
       title: this.inputValue,
       isComplete: false,
       isUpdate: false
     };
-    const newList = this.todoList.concat(item);
-    this.todoList = newList;
-
-    // this.todoList = this.todoList.concat(item);
+    const newTodoList = this.todoList.concat(newItem);
+    this.todoList = newTodoList;
+    this.inputValue = "";
   }
 
+  // input Value값
+  @action
+  onChangeValue(value) {
+    this.inputValue = value;
+  }
+
+  // isComplete input체크
   @action
   onChangeComplete(id) {
-    const newLists = this.todoList.map((info) =>
-      info.id === id ? { ...info, isComplete: !info.isComplete } : info
+    const newTodoList = this.todoList.map((item) =>
+      id === item.id ? { ...item, isComplete: !item.isComplete } : item
     );
 
-    this.todoList = newLists;
+    this.todoList = newTodoList;
+  }
+
+  // 수정버튼
+  @action
+  onUpdateForm(id) {
+    const newTodoList = this.todoList.map((item) =>
+      id === item.id ? { ...item, isUpdate: !item.isUpdate } : item
+    );
+
+    this.todoList = newTodoList;
+  }
+
+  // 수정 inpur value
+  @action
+  onUpdateValue(value) {
+    console.log(toJS(value));
+    // this.todoList.title = value;
+  }
+
+  // 삭제버튼
+  @action
+  deleteItem(id) {
+    const newTodoList = this.todoList.filter((item) => {
+      return id !== item.id ? { ...item } : null;
+    });
+    this.todoList = newTodoList;
   }
 }
 
