@@ -1,4 +1,6 @@
 body {
+  /* background: linear-gradient(to right, #f9bdc2, #9d72c8); */
+  background: #d2dfed;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -14,6 +16,7 @@ code {
 }
 .container {
   display: flex;
+  min-width: 360px;
   justify-content: center;
 }
 .wrapper {
@@ -30,48 +33,144 @@ header {
   margin-bottom: 20px;
   font-size: 20px;
 }
+.top-contents {
+  padding: 24px;
+  background: #46529d;
+}
+.top-title {
+  margin: 0;
+  color: #fff;
+}
+.top-contents .date {
+  color: #fff;
+}
+.content {
+  width: 100%;
+  padding: 40px;
+  background: #fff;
+  box-sizing: border-box;
+}
+.insert {
+  position: relative;
+  height: 50px;
+}
+.insert input {
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
 .list-item {
   display: flex;
-  align-items: center;
+  position: relative;
+  height: 50px;
   margin-top: 15px;
+  padding-left: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  align-items: center;
 }
+.list-item::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -3px;
+  width: 6px;
+  height: 30px;
+  background: #8793e0;
+}
+
 .list-item.active .text {
   opacity: 0.2;
 }
-.list-item .text {
-  width: 200px;
+.list-item .checked {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: #eee;
 }
+
+.list-item input#chk1 {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  text-indent: -999px;
+}
+.list-item .text {
+  overflow: hidden;
+  width: 76%;
+  text-overflow: ellipsis;
+  margin-left: 16px;
+}
+
+.list-item .box-update {
+  width: 76%;
+  height: 35px;
+  border-bottom: 1px solid #888888;
+}
+
+.list-item .input-update {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
 .button {
-  margin-left: 10px;
+  position: absolute;
+  right: 14px;
 }
 .btn {
-  cursor: pointer;
-  padding: 0 10px;
-  height: 30px;
-  line-height: 30px;
+  padding: 0;
   border: 0;
   background-color: transparent;
   color: #fff;
+  cursor: pointer;
 }
 .btn.btn-ok {
-  background-color: #1462ff;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-size: cover;
+  background-image: url("./images/circle.png");
 }
 .btn.btn-cancel {
-  background-color: #aaa;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  background-image: url("./images/cancel.png");
 }
 .btn.btn-modify {
-  background-color: #feb014;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-size: cover;
+  background-image: url("./images/edit.png");
 }
 .btn.btn-delete {
-  background-color: #ff1462;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  background-image: url("./images/trash.png");
 }
 .btn.btn-add {
-  background-color: #3a7bff;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-image: url("./images/enter.png");
 }
-.insert input {
-  width: 300px;
-  height: 30px;
-  line-height: 30px;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
+.btn.btn-add:focus {
+  outline: none;
 }

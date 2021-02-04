@@ -56,30 +56,26 @@ class TodoList extends Component {
             >
               {item.isUpdate ? (
                 <>
-                  <div>
+                  <div className="box-update">
                     <input
                       type="text"
+                      className="input-update"
                       value={this.state.updateValue}
                       placeholder="todo를 적어주세요"
                       onChange={this.onUpdateValue}
                     />
                   </div>
                   <div className="button">
-                    <button type="button" className="btn btn-ok">
-                      수정완료
-                    </button>
+                    <button type="button" className="btn btn-ok"></button>
                     <button
                       type="button"
                       className="btn btn-cancel"
                       onClick={() => this.onUpdateForm(item.id)}
-                    >
-                      취소
-                    </button>
+                    ></button>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="text">{item.title}</div>
                   <div className="checked">
                     <input
                       type="checkbox"
@@ -87,22 +83,19 @@ class TodoList extends Component {
                       onChange={() => this.onChangeComplete(item.id)}
                     />
                   </div>
+                  <div className="text">{item.title}</div>
 
                   <div className="button">
                     <button
                       type="button"
                       className="btn btn-modify"
                       onClick={() => this.onUpdateForm(item.id, item.title)}
-                    >
-                      수정
-                    </button>
+                    ></button>
                     <button
                       type="button"
                       className="btn btn-delete"
                       onClick={() => this.deleteItem(item.id)}
-                    >
-                      삭제
-                    </button>
+                    ></button>
                   </div>
                 </>
               )}

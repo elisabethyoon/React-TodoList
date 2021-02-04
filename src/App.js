@@ -7,7 +7,13 @@ class App extends Component {
     return (
       <div className="container">
         <div className="wrapper">
-          <header>TodoList</header>
+          {/* <header>TodoList</header> */}
+          <div className="top-contents">
+            <h1 className="top-title">
+              Hello, <br /> Betty
+            </h1>
+            <p className="date">Feb 3, 2021</p>
+          </div>
           <div className="content">
             <InsertForm />
             <TodoList />

@@ -25,9 +25,7 @@ class InsertForm extends Component {
           value={inputValue}
           onChange={this.onChangeValue}
         />
-        <button className="btn btn-add" onClick={this.addItem}>
-          등록
-        </button>
+        <button className="btn btn-add" onClick={this.addItem}></button>
       </div>
     );
   }
