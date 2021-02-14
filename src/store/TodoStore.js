@@ -10,19 +10,13 @@ class TodoStore {
   todoList = [
     {
       id: 1,
-      title: "안녕하세요",
+      title: "React",
       isComplete: false,
       isUpdate: false
     },
     {
       id: 2,
-      title: "front-end developer",
-      isComplete: false,
-      isUpdate: false
-    },
-    {
-      id: 3,
-      title: "윤엘리사벳입니다.",
+      title: "Mobx",
       isComplete: false,
       isUpdate: false
     }
