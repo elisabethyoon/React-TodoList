@@ -12,6 +12,5 @@ yarn start
 ```
 ## 주요 기술 스택
 * React
-* React Router
-* mobx
-* Axios
+* Mobx
+* javascript
