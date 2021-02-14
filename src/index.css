@@ -86,19 +86,25 @@ header {
 
 .list-item.active .text {
   opacity: 0.2;
+  text-decoration: line-through;
 }
-.list-item .checked {
+/* .list-item .checked {
   width: 20px;
   height: 20px;
   border-radius: 4px;
   background: #eee;
+} */
+.list-item.active .checked {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background: url("./images/checkbox.png");
 }
 
 .list-item input#chk1 {
   width: 20px;
   height: 20px;
   margin: 0;
-  opacity: 0;
   cursor: pointer;
   text-indent: -999px;
 }

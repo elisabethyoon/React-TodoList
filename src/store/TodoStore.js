@@ -1,9 +1,9 @@
 import { makeAutoObservable, observable, action } from "mobx";
-import { toJS } from "mobx";
 
 class TodoStore {
-  constructor() {
+  constructor(rootStore) {
     makeAutoObservable(this);
+    this.rootStore = rootStore;
   }
 
   @observable
@@ -73,10 +73,10 @@ class TodoStore {
     this.todoList = newTodoList;
   }
 
-  // 수정 inpur value
+  // 수정 input value
   @action
   onUpdateValue(value) {
-    console.log(toJS(value));
+    // console.log(toJS(value));
     // this.todoList.title = value;
   }
 
