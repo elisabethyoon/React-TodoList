@@ -22,7 +22,18 @@ code {
 .wrapper {
   width: 600px;
 }
-
+.wrap-top-input {
+  overflow: hidden;
+}
+.input-search {
+  float: right;
+  margin: 20px 0 10px;
+  padding: 10px;
+  border: 0;
+  border-bottom: 1px solid #999;
+  box-sizing: border-box;
+  outline: none;
+}
 ul,
 li {
   margin: 0;

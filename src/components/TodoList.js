@@ -11,11 +11,16 @@ class TodoList extends Component {
     todoStore.onChangeComplete(id);
   };
 
-  // 수정버튼
-  onUpdateForm = (id) => {
-    // console.log(id, "update");
+  // update버튼
+  updateToggleForm = (id) => {
     const { todoStore } = this.props;
-    todoStore.onUpdateForm(id);
+    todoStore.updateToggleForm(id);
+  };
+
+  // 수정완료 버튼
+  onSubmitUpdateForm = (id, title) => {
+    const { todoStore } = this.props;
+    todoStore.onSubmitUpdateForm(id, title);
   };
 
   // 삭제버튼
@@ -25,17 +30,21 @@ class TodoList extends Component {
   };
   render() {
     const { todoStore } = this.props;
-    const { todoList } = todoStore;
+    const { todoList, searchValue } = todoStore;
+    const newTodo = todoList.filter((info) => {
+      return info.title.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+    });
     return (
       <ul className="todo-list">
-        {todoList.map((item) => {
+        {newTodo.map((item) => {
           return (
             <ListItem
               key={item.id}
               item={item}
-              onUpdateForm={this.onUpdateForm}
+              updateToggleForm={this.updateToggleForm}
               onChangeComplete={this.onChangeComplete}
               deleteItem={this.deleteItem}
+              onSubmitUpdateForm={this.onSubmitUpdateForm}
             />
           );
         })}
@@ -57,15 +66,21 @@ class ListItem extends Component {
       updateValue: value
     });
   };
-  onUpdateForm = (id, title) => {
+
+  // update버튼
+  updateToggleForm = (id, title) => {
     this.setState({
       updateValue: title
     });
-    this.props.onUpdateForm(id);
+    this.props.updateToggleForm(id);
+  };
+
+  // 수정완료 버튼
+  onSubmitUpdateForm = (id) => {
+    this.props.onSubmitUpdateForm(id, this.state.updateValue);
   };
   render() {
     const { item, onChangeComplete, deleteItem } = this.props;
-    // const { updateValue } = this.state;
 
     return (
       <li className={item.isComplete ? "list-item active" : "list-item"}>
@@ -81,11 +96,15 @@ class ListItem extends Component {
               />
             </div>
             <div className="button">
-              <button type="button" className="btn btn-ok"></button>
+              <button
+                type="button"
+                className="btn btn-ok"
+                onClick={() => this.onSubmitUpdateForm(item.id)}
+              ></button>
               <button
                 type="button"
                 className="btn btn-cancel"
-                onClick={() => this.onUpdateForm(item.id)}
+                onClick={() => this.updateToggleForm(item.id)}
               ></button>
             </div>
           </>
@@ -105,7 +124,7 @@ class ListItem extends Component {
               <button
                 type="button"
                 className="btn btn-modify"
-                onClick={() => this.onUpdateForm(item.id, item.title)}
+                onClick={() => this.updateToggleForm(item.id, item.title)}
               ></button>
               <button
                 type="button"
