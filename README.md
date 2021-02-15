@@ -1,7 +1,7 @@
 # React Todo리스트
 > 검색필터 기능의 CRUD TodoList 애플리케이션입니다. (상태관리 - Mobx)
 
-<img src="./src/images/todolist.gif" width="600px" height="400px"/>
+<img src="./src/images/todolist1.gif" width="750px" height="450px"/>
 
 ## 설치방법
 ```
